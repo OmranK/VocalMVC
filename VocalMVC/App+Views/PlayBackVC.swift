@@ -54,7 +54,7 @@ class PlayBackVC: UIViewController, UITextFieldDelegate, AVAudioPlayerDelegate {
     
     //MARK: - Model-Change Observer & Handler Methods
     fileprivate func setupStoreModelChangeObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(notification:)), name: Store.changedNotification, object: nil)
+        Store.addObserver(self, selector: .handleChange, notification: .storeChanged)
     }
     
     @objc func storeChanged(notification: Notification) {
@@ -158,4 +158,8 @@ fileprivate extension String {
     static let pause = NSLocalizedString("Pause", comment: "")
     static let resume = NSLocalizedString("Resume playing", comment: "")
     static let play = NSLocalizedString("Play", comment: "")
+}
+
+fileprivate extension Selector {
+    static let handleChange = #selector(PlayBackVC.storeChanged(notification:))
 }

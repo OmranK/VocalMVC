@@ -8,17 +8,20 @@
 
 import Foundation
 
-final class Store {
+final class Store: Notifier {
+    
+    enum Notification: String {
+        case storeChanged
+    }
     
     //MARK: - Singleton Declaration
     
     static let shared = Store(url: documentDirectory)
+    static var observers = [NSObjectProtocol]()
     
     //MARK: - Properties
     private(set) var rootFolder: Folder
-    
-    static let changedNotification = Notification.Name("StoreChanged")
-    
+        
     //MARK: - Data Persistence Properties
     let baseURL: URL?
     var placeholder: URL?
@@ -54,7 +57,7 @@ final class Store {
             try! data.write(to: url.appendingPathComponent(.dataSaveLocation))
 //             error handling ommitted
         }
-        NotificationCenter.default.post(name: Store.changedNotification, object: item, userInfo: userInfo)
+        Store.postNotification(notification: .storeChanged, object: item, userInfo: userInfo)
     }
     
     func item(atUUIDPath path: [UUID]) -> Item? {
@@ -76,5 +79,7 @@ final class Store {
 
 fileprivate extension String {
     static let dataSaveLocation = "store.json"
+    
 }
+
 

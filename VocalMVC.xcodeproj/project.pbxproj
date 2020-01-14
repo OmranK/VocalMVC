@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71F1CE523CD691400266997 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F1CE423CD691400266997 /* Notifier.swift */; };
 		B72DA48C23CBCC19009000C0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DA48B23CBCC19009000C0 /* Utilities.swift */; };
 		B74A3BF023CC043D006AA964 /* RecorderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74A3BEF23CC043D006AA964 /* RecorderVC.swift */; };
 		B74A3BF223CC0F9B006AA964 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74A3BF123CC0F9B006AA964 /* Recorder.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71F1CE423CD691400266997 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		B72DA48B23CBCC19009000C0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		B74A3BEF23CC043D006AA964 /* RecorderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderVC.swift; sourceTree = "<group>"; };
 		B74A3BF123CC0F9B006AA964 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				B72DA48B23CBCC19009000C0 /* Utilities.swift */,
 				B74A3BF123CC0F9B006AA964 /* Recorder.swift */,
 				B74A3BF323CC16CC006AA964 /* Player.swift */,
+				B71F1CE423CD691400266997 /* Notifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				B7E54FAE23CBBB91004E3753 /* FolderTVC.swift in Sources */,
 				B7E54F7423CBA0F6004E3753 /* AppDelegate.swift in Sources */,
 				B7E54F7623CBA0F6004E3753 /* SceneDelegate.swift in Sources */,
+				B71F1CE523CD691400266997 /* Notifier.swift in Sources */,
 				B7E54FA923CBAC08004E3753 /* Folder.swift in Sources */,
 				B7EDD33423CBC7AF005460B7 /* Recording.swift in Sources */,
 			);

@@ -10,6 +10,10 @@ import UIKit
 
 class FolderTVC: UITableViewController {
     
+//    enum Notification: String {
+//        case makeCoffee
+//    }
+    
     //MARK: - Properties
     var folder: Folder = Store.shared.rootFolder {
         didSet {
@@ -39,11 +43,10 @@ class FolderTVC: UITableViewController {
     
     //MARK: - Model-Change Observer & Handler
     fileprivate func setupStoreChangeObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleChangeNotification(_:)), name: Store.changedNotification, object: nil)
+        Store.addObserver(self, selector: .handleChange, notification: .storeChanged)
     }
     
     @objc fileprivate func handleChangeNotification(_ notification: Notification) {
-        
         // Handle changes to current folder.
         if let item = notification.object as? Folder, item === folder {
             let description = notification.userInfo?[Item.logDescription] as? String
@@ -53,14 +56,14 @@ class FolderTVC: UITableViewController {
                 folder = item
             }
         }
-        
+
         // Handle changes to current folder's children (contents).
         guard let userInfo = notification.userInfo, userInfo[Item.parentFolder] as? Folder === folder else { return }
-        
+
         if let description = userInfo[Item.logDescription] as? String {
             let oldValue = userInfo[Item.oldValue]
             let newValue = userInfo[Item.newValue]
-            
+
             switch (description, newValue, oldValue) {
             case let (Item.removed, _, (oldIndex as Int)?):
                 tableView.deleteRows(at: [IndexPath(row: oldIndex, section: 0)], with: .right)
@@ -183,4 +186,8 @@ fileprivate extension String {
     static let createFolder = NSLocalizedString("Create Folder", comment: "Header for folder creation dialog")
     static let folderName = NSLocalizedString("Folder Name", comment: "Placeholder for text field where folder name should be entered.")
     static let create = NSLocalizedString("Create", comment: "Confirm button for folder creation dialog")
+}
+
+fileprivate extension Selector {
+    static let handleChange = #selector(FolderTVC.handleChangeNotification(_:))
 }

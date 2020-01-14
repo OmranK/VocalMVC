@@ -31,14 +31,18 @@ class Folder: Item, Codable {
         contents.append(item)
         item.parent = self
         let newIndex = contents.firstIndex { $0 === item }!
-        store?.save(item, userInfo: [Item.logDescription: Item.added, Item.newValue: newIndex, Item.parentFolder: self])
+        store?.save(item, userInfo: [Item.logDescription: Item.added,
+                                     Item.newValue: newIndex,
+                                     Item.parentFolder: self])
     }
     
     func remove(_ item: Item) {
         guard let index = contents.firstIndex(where: { $0 === item }) else { return }
         item.deleted()
         contents.remove(at: index)
-        store?.save(item, userInfo: [Item.logDescription: Item.removed, Item.oldValue : index, Item.parentFolder : self])
+        store?.save(item, userInfo: [Item.logDescription: Item.removed,
+                                     Item.oldValue : index,
+                                     Item.parentFolder : self])
     }
     
     func reSort(changedItem: Item) -> (oldIndex: Int, newIndex: Int) {
